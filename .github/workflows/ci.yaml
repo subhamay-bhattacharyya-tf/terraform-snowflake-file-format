@@ -30,7 +30,7 @@ jobs:
     strategy:
       matrix:
         module:
-          - modules/snowflake-warehouse
+          - modules/snowflake-file-format
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -64,8 +64,8 @@ jobs:
     strategy:
       matrix:
         example:
-          - examples/basic
-          - examples/multiple-warehouses
+          - examples/single-file-format
+          - examples/multiple-file-formats
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -115,14 +115,14 @@ jobs:
           go mod download
         working-directory: test
 
-      - name: Run Terratest - Single Warehouse
-        id: single-warehouse-test
+      - name: Run Terratest - Single File Format
+        id: single-file-format-test
         run: |
           set -o pipefail
-          go test -v -timeout 30m -run TestSingleWarehouse 2>&1 | tee single_warehouse_output.txt
-          echo "## Single Warehouse Test Results" >> $GITHUB_STEP_SUMMARY
+          go test -v -timeout 30m -run TestSingleFileFormat 2>&1 | tee single_file_format_output.txt
+          echo "## Single File Format Test Results" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          cat single_warehouse_output.txt >> $GITHUB_STEP_SUMMARY
+          cat single_file_format_output.txt >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
         working-directory: test
         env:
@@ -132,14 +132,14 @@ jobs:
           SNOWFLAKE_ROLE: ${{ vars.SNOWFLAKE_ROLE }}
           SNOWFLAKE_PRIVATE_KEY: ${{ secrets.SNOWFLAKE_PRIVATE_KEY }}
 
-      - name: Run Terratest - Multiple Warehouses
-        id: multiple-warehouses-test
+      - name: Run Terratest - Multiple File Formats
+        id: multiple-file-formats-test
         run: |
           set -o pipefail
-          go test -v -timeout 30m -run TestMultipleWarehouses 2>&1 | tee multiple_warehouses_output.txt
-          echo "## Multiple Warehouses Test Results" >> $GITHUB_STEP_SUMMARY
+          go test -v -timeout 30m -run TestMultipleFileFormats 2>&1 | tee multiple_file_formats_output.txt
+          echo "## Multiple File Formats Test Results" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          cat multiple_warehouses_output.txt >> $GITHUB_STEP_SUMMARY
+          cat multiple_file_formats_output.txt >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
         working-directory: test
         env:

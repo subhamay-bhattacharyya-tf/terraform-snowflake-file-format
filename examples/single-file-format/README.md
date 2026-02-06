@@ -1,4 +1,4 @@
-# Basic File Format Example
+# Single File Format Example
 
 This example demonstrates how to create a single Snowflake file format using the `snowflake-file-format` module.
 

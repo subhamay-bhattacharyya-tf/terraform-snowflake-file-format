@@ -23,7 +23,7 @@ func TestSingleFileFormat(t *testing.T) {
 	databaseName := "TERRATEST_DB"
 	schemaName := "PUBLIC"
 
-	tfDir := "../examples/basic-file-format"
+	tfDir := "../examples/single-file-format"
 
 	fileFormatConfigs := map[string]interface{}{
 		"test_ff": map[string]interface{}{

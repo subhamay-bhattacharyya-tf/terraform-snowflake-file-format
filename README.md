@@ -75,7 +75,7 @@ module "file_formats" {
 
 ## Examples
 
-- [Basic (Single File Format)](examples/basic-file-format) - Create a single file format
+- [Single File Format](examples/single-file-format) - Create a single file format
 - [Multiple File Formats](examples/multiple-file-formats) - Create multiple file formats
 
 ## Requirements
