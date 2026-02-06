@@ -85,6 +85,17 @@ module "file_formats" {
 | terraform | >= 1.3.0 |
 | snowflake | >= 0.87.0 |
 
+## Provider Configuration
+
+The `snowflake_file_format` resource is currently a preview feature in the Snowflake provider. You must enable it in your provider configuration:
+
+```hcl
+provider "snowflake" {
+  # ... other configuration ...
+  preview_features_enabled = ["snowflake_file_format_resource"]
+}
+```
+
 ## Providers
 
 | Name | Version |
