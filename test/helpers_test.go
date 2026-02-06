@@ -15,12 +15,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type WarehouseProps struct {
-	Name    string
-	Size    string
-	Comment string
-}
-
 func openSnowflake(t *testing.T) *sql.DB {
 	t.Helper()
 
@@ -71,10 +65,28 @@ func openSnowflake(t *testing.T) *sql.DB {
 	return db
 }
 
-func warehouseExists(t *testing.T, db *sql.DB, warehouseName string) bool {
+func mustEnv(t *testing.T, key string) string {
+	t.Helper()
+	v := strings.TrimSpace(os.Getenv(key))
+	require.NotEmpty(t, v, "Missing required environment variable %s", key)
+	return v
+}
+
+func escapeLike(s string) string {
+	return strings.ReplaceAll(s, "'", "''")
+}
+
+
+type FileFormatProps struct {
+	Name       string
+	FormatType string
+	Comment    string
+}
+
+func fileFormatExists(t *testing.T, db *sql.DB, database, schema, fileFormatName string) bool {
 	t.Helper()
 
-	q := fmt.Sprintf("SHOW WAREHOUSES LIKE '%s';", escapeLike(warehouseName))
+	q := fmt.Sprintf("SHOW FILE FORMATS LIKE '%s' IN %s.%s;", escapeLike(fileFormatName), database, schema)
 	rows, err := db.Query(q)
 	require.NoError(t, err)
 	defer func() { _ = rows.Close() }()
@@ -82,13 +94,10 @@ func warehouseExists(t *testing.T, db *sql.DB, warehouseName string) bool {
 	return rows.Next()
 }
 
-func fetchWarehouseProps(t *testing.T, db *sql.DB, warehouseName string) WarehouseProps {
+func fetchFileFormatProps(t *testing.T, db *sql.DB, database, schema, fileFormatName string) FileFormatProps {
 	t.Helper()
 
-	// SHOW WAREHOUSES returns columns in a specific order. We need to scan all columns
-	// to get name (col 0), size (col 3), and comment (col 10 in newer versions).
-	// Using a simpler approach: query rows and scan by column name using rows.Columns()
-	q := fmt.Sprintf("SHOW WAREHOUSES LIKE '%s';", escapeLike(warehouseName))
+	q := fmt.Sprintf("SHOW FILE FORMATS LIKE '%s' IN %s.%s;", escapeLike(fileFormatName), database, schema)
 	rows, err := db.Query(q)
 	require.NoError(t, err)
 	defer func() { _ = rows.Close() }()
@@ -96,23 +105,23 @@ func fetchWarehouseProps(t *testing.T, db *sql.DB, warehouseName string) Warehou
 	cols, err := rows.Columns()
 	require.NoError(t, err)
 
-	// Find column indices for name, size, comment
-	nameIdx, sizeIdx, commentIdx := -1, -1, -1
+	// Find column indices for name, type, comment
+	nameIdx, typeIdx, commentIdx := -1, -1, -1
 	for i, col := range cols {
 		switch col {
 		case "name":
 			nameIdx = i
-		case "size":
-			sizeIdx = i
+		case "type":
+			typeIdx = i
 		case "comment":
 			commentIdx = i
 		}
 	}
-	require.NotEqual(t, -1, nameIdx, "name column not found in SHOW WAREHOUSES output")
-	require.NotEqual(t, -1, sizeIdx, "size column not found in SHOW WAREHOUSES output")
-	require.NotEqual(t, -1, commentIdx, "comment column not found in SHOW WAREHOUSES output")
+	require.NotEqual(t, -1, nameIdx, "name column not found in SHOW FILE FORMATS output")
+	require.NotEqual(t, -1, typeIdx, "type column not found in SHOW FILE FORMATS output")
+	require.NotEqual(t, -1, commentIdx, "comment column not found in SHOW FILE FORMATS output")
 
-	require.True(t, rows.Next(), "No warehouse found matching %s", warehouseName)
+	require.True(t, rows.Next(), "No file format found matching %s", fileFormatName)
 
 	// Create slice to hold all column values
 	values := make([]interface{}, len(cols))
@@ -138,20 +147,9 @@ func fetchWarehouseProps(t *testing.T, db *sql.DB, warehouseName string) Warehou
 		return fmt.Sprintf("%v", v)
 	}
 
-	return WarehouseProps{
-		Name:    getName(values[nameIdx]),
-		Size:    getName(values[sizeIdx]),
-		Comment: getName(values[commentIdx]),
+	return FileFormatProps{
+		Name:       getName(values[nameIdx]),
+		FormatType: getName(values[typeIdx]),
+		Comment:    getName(values[commentIdx]),
 	}
-}
-
-func mustEnv(t *testing.T, key string) string {
-	t.Helper()
-	v := strings.TrimSpace(os.Getenv(key))
-	require.NotEmpty(t, v, "Missing required environment variable %s", key)
-	return v
-}
-
-func escapeLike(s string) string {
-	return strings.ReplaceAll(s, "'", "''")
 }
