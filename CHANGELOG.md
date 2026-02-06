@@ -1,5 +1,9 @@
 ## [unreleased]
 
+### 📚 Documentation
+
+- Update CHANGELOG.md [skip ci]
+
 ### ⚙️ Miscellaneous Tasks
 
 - Terrafom Snowflake module for file format
