@@ -3,6 +3,8 @@
 ### 📚 Documentation
 
 - Update CHANGELOG.md [skip ci]
+- Update CHANGELOG.md [skip ci]
+- Add Snowflake provider preview feature configuration
 
 ### ⚙️ Miscellaneous Tasks
 
