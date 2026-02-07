@@ -1,10 +1,15 @@
 ## [unreleased]
 
+### 🚀 Features
+
+- [**breaking**] Refactor module from warehouse management to file format configuration
+
 ### 📚 Documentation
 
 - Update CHANGELOG.md [skip ci]
 - Update CHANGELOG.md [skip ci]
 - Add Snowflake provider preview feature configuration
+- Update CHANGELOG.md [skip ci]
 - Update CHANGELOG.md [skip ci]
 
 ### ⚙️ Miscellaneous Tasks
