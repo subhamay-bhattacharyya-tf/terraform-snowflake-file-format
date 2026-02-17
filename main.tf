@@ -1,3 +1,10 @@
+# -----------------------------------------------------------------------------
+# Terraform Snowflake File Format Module - Main
+# -----------------------------------------------------------------------------
+# Creates and manages one or more Snowflake file formats based on the
+# file_format_configs map.
+# -----------------------------------------------------------------------------
+
 # Snowflake File Format Resource
 # Creates and manages one or more Snowflake file formats based on the file_format_configs map
 
