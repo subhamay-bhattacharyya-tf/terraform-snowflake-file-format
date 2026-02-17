@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------------------
+# Terraform Snowflake File Format Module - Variables
+# -----------------------------------------------------------------------------
+# Input variables for the Snowflake file format module.
+# -----------------------------------------------------------------------------
+
 variable "file_format_configs" {
   description = "Map of configuration objects for Snowflake file formats"
   type = map(object({
