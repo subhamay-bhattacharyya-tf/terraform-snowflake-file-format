@@ -1,3 +1,13 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.1.0](https://github.com/subhamay-bhattacharyya-tf/terraform-snowflake-file-format/compare/v1.0.0...v1.1.0) (2026-02-17)
+
+### Features
+
+* convert to single-module repository layout ([968ff86](https://github.com/subhamay-bhattacharyya-tf/terraform-snowflake-file-format/commit/968ff86fc5deb94ce8b4484d4304913a048aa392))
+
 ## [unreleased]
 
 ### 🚀 Features
