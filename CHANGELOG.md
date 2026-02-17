@@ -3,6 +3,12 @@
 ### 🚀 Features
 
 - Convert to single-module repository layout
+
+### 📚 Documentation
+
+- Update CHANGELOG.md [skip ci]
+- Add standardized header comments to Terraform configuration files
+- *(main.tf)* Add standardized header comments to main configuration file
 ## [1.0.0] - 2026-02-07
 
 ### 🚀 Features
