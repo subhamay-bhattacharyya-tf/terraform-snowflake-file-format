@@ -4,7 +4,7 @@
 # to create a single Snowflake file format.
 
 module "file_format" {
-  source = "../../modules/snowflake-file-format"
+  source = "../.."
 
   file_format_configs = var.file_format_configs
 }

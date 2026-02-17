@@ -58,7 +58,6 @@ variable "file_format_configs" {
     error_message = "Schema name must not be empty."
   }
 
-
   validation {
     condition = alltrue([for k, ff in var.file_format_configs : contains([
       "CSV", "JSON", "AVRO", "ORC", "PARQUET", "XML"
