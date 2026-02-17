@@ -83,7 +83,7 @@ module "file_formats" {
 | Name | Version |
 |------|---------|
 | terraform | >= 1.3.0 |
-| snowflake | >= 0.87.0 |
+| snowflake | >= 1.0.0 |
 
 ## Provider Configuration
 
@@ -100,7 +100,7 @@ provider "snowflake" {
 
 | Name | Version |
 |------|---------|
-| snowflake | >= 0.87.0 |
+| snowflake | >= 1.0.0 |
 
 ## Inputs
 
