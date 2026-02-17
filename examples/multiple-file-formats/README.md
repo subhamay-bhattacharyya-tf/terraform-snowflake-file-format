@@ -6,7 +6,7 @@ This example demonstrates how to create multiple Snowflake file formats using th
 
 ```hcl
 module "file_formats" {
-  source = "../../modules/snowflake-file-format"
+  source = "github.com/subhamay-bhattacharyya-tf/terraform-snowflake-file-format"
 
   file_format_configs = {
     "csv_standard" = {

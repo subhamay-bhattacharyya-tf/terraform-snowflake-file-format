@@ -4,7 +4,7 @@
 # to create multiple Snowflake file formats using a map of configurations.
 
 module "file_formats" {
-  source = "../../modules/snowflake-file-format"
+  source = "../.."
 
   file_format_configs = var.file_format_configs
 }

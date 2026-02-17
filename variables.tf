@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------------------
+# Terraform Snowflake File Format Module - Variables
+# -----------------------------------------------------------------------------
+# Input variables for the Snowflake file format module.
+# -----------------------------------------------------------------------------
+
 variable "file_format_configs" {
   description = "Map of configuration objects for Snowflake file formats"
   type = map(object({
@@ -57,7 +63,6 @@ variable "file_format_configs" {
     condition     = alltrue([for k, ff in var.file_format_configs : length(ff.schema) > 0])
     error_message = "Schema name must not be empty."
   }
-
 
   validation {
     condition = alltrue([for k, ff in var.file_format_configs : contains([

@@ -8,11 +8,15 @@ on:
       - 'feature/**'
       - 'bug/**'
     paths:
-      - modules/**
+      - '*.tf'
+      - 'examples/**'
+      - 'test/**'
   pull_request:
     branches: [main]
     paths:
-      - modules/**
+      - '*.tf'
+      - 'examples/**'
+      - 'test/**'
   workflow_dispatch:
 
 permissions:
@@ -30,7 +34,7 @@ jobs:
     strategy:
       matrix:
         module:
-          - modules/snowflake-file-format
+          - .
     steps:
       - name: Checkout
         uses: actions/checkout@v6

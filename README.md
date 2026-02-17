@@ -18,7 +18,7 @@ A Terraform module for creating and managing Snowflake file formats using a map 
 
 ```hcl
 module "file_format" {
-  source = "path/to/modules/snowflake-file-format"
+  source = "github.com/subhamay-bhattacharyya-tf/terraform-snowflake-file-format"
 
   file_format_configs = {
     "csv_format" = {
@@ -38,7 +38,7 @@ module "file_format" {
 
 ```hcl
 module "file_formats" {
-  source = "path/to/modules/snowflake-file-format"
+  source = "github.com/subhamay-bhattacharyya-tf/terraform-snowflake-file-format"
 
   file_format_configs = {
     "csv_standard" = {
@@ -83,7 +83,7 @@ module "file_formats" {
 | Name | Version |
 |------|---------|
 | terraform | >= 1.3.0 |
-| snowflake | >= 0.87.0 |
+| snowflake | >= 1.0.0 |
 
 ## Provider Configuration
 
@@ -100,7 +100,7 @@ provider "snowflake" {
 
 | Name | Version |
 |------|---------|
-| snowflake | >= 0.87.0 |
+| snowflake | >= 1.0.0 |
 
 ## Inputs
 
@@ -193,7 +193,6 @@ go mod tidy
 go test -v -timeout 30m
 ```
 
-
 Required environment variables for testing:
 - `SNOWFLAKE_ORGANIZATION_NAME` - Snowflake organization name
 - `SNOWFLAKE_ACCOUNT_NAME` - Snowflake account name
@@ -204,8 +203,8 @@ Required environment variables for testing:
 ## CI/CD Configuration
 
 The CI workflow runs on:
-- Push to `main`, `feature/**`, and `bug/**` branches (when `modules/**` changes)
-- Pull requests to `main` (when `modules/**` changes)
+- Push to `main`, `feature/**`, and `bug/**` branches
+- Pull requests to `main`
 - Manual workflow dispatch
 
 The workflow includes:

@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------------------
+# Terraform Snowflake File Format Module - Outputs
+# -----------------------------------------------------------------------------
+# Output values for the Snowflake file format module.
+# -----------------------------------------------------------------------------
+
 output "file_format_names" {
   description = "The names of the created file formats."
   value       = { for k, v in snowflake_file_format.this : k => v.name }
