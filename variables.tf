@@ -46,6 +46,9 @@ variable "file_format_configs" {
     disable_auto_convert   = optional(bool, false)
 
     comment = optional(string, null)
+
+    # Grants
+    usage_roles = optional(list(string), [])
   }))
   default = {}
 

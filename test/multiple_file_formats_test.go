@@ -38,6 +38,7 @@ func TestMultipleFileFormats(t *testing.T) {
 			"skip_header":     1,
 			"trim_space":      true,
 			"comment":         "Terratest CSV file format",
+			"usage_roles":     []string{},
 		},
 		"json_format": map[string]interface{}{
 			"database":          databaseName,
@@ -47,6 +48,7 @@ func TestMultipleFileFormats(t *testing.T) {
 			"strip_outer_array": true,
 			"strip_null_values": true,
 			"comment":           "Terratest JSON file format",
+			"usage_roles":       []string{},
 		},
 		"parquet_format": map[string]interface{}{
 			"database":       databaseName,
@@ -55,6 +57,7 @@ func TestMultipleFileFormats(t *testing.T) {
 			"format_type":    "PARQUET",
 			"binary_as_text": false,
 			"comment":        "Terratest Parquet file format",
+			"usage_roles":    []string{},
 		},
 	}
 

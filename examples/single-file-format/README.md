@@ -17,6 +17,7 @@ module "file_format" {
       field_delimiter = ","
       skip_header     = 1
       comment         = "Standard CSV file format with header row"
+      usage_roles     = ["DATA_ENGINEER"]
     }
   }
 }

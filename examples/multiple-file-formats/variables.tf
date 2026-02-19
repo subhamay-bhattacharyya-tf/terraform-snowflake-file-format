@@ -40,6 +40,9 @@ variable "file_format_configs" {
     disable_auto_convert   = optional(bool, false)
 
     comment = optional(string, null)
+
+    # Grants
+    usage_roles = optional(list(string), [])
   }))
   default = {
     "csv_standard" = {
@@ -52,6 +55,7 @@ variable "file_format_configs" {
       trim_space      = true
       null_if         = ["NULL", "null", ""]
       comment         = "Standard CSV format with header and null handling"
+      usage_roles     = []
     }
     "csv_pipe_delimited" = {
       database        = "MY_DATABASE"
@@ -62,6 +66,7 @@ variable "file_format_configs" {
       skip_header     = 0
       compression     = "GZIP"
       comment         = "Pipe-delimited CSV format for legacy systems"
+      usage_roles     = []
     }
     "json_standard" = {
       database          = "MY_DATABASE"
@@ -72,6 +77,7 @@ variable "file_format_configs" {
       strip_null_values = true
       compression       = "AUTO"
       comment           = "Standard JSON format for API data ingestion"
+      usage_roles       = []
     }
     "parquet_standard" = {
       database       = "MY_DATABASE"
@@ -81,6 +87,7 @@ variable "file_format_configs" {
       binary_as_text = false
       compression    = "AUTO"
       comment        = "Parquet format for analytics workloads"
+      usage_roles    = []
     }
   }
 }
