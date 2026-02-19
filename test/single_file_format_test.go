@@ -35,6 +35,7 @@ func TestSingleFileFormat(t *testing.T) {
 			"skip_header":     1,
 			"trim_space":      true,
 			"comment":         "Terratest single file format test",
+			"usage_roles":     []string{},
 		},
 	}
 

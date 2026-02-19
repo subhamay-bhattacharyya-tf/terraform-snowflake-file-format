@@ -40,6 +40,9 @@ variable "file_format_configs" {
     disable_auto_convert   = optional(bool, false)
 
     comment = optional(string, null)
+
+    # Grants
+    usage_roles = optional(list(string), [])
   }))
   default = {
     "csv_format" = {
@@ -50,6 +53,7 @@ variable "file_format_configs" {
       field_delimiter = ","
       skip_header     = 1
       comment         = "Standard CSV file format with header row"
+      usage_roles     = []
     }
   }
 }

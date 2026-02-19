@@ -51,6 +51,7 @@ module "file_formats" {
       trim_space      = true
       null_if         = ["NULL", "null", ""]
       comment         = "Standard CSV format with header and null handling"
+      usage_roles     = ["DATA_ENGINEER", "DATA_ANALYST"]
     }
     "json_standard" = {
       database          = "MY_DATABASE"
@@ -60,6 +61,7 @@ module "file_formats" {
       strip_outer_array = true
       strip_null_values = true
       comment           = "Standard JSON format for API data ingestion"
+      usage_roles       = ["DATA_ENGINEER"]
     }
     "parquet_standard" = {
       database       = "MY_DATABASE"
@@ -142,6 +144,7 @@ provider "snowflake" {
 | disable_snowflake_data | bool | false | Disable Snowflake data (XML) |
 | disable_auto_convert | bool | false | Disable auto convert (XML) |
 | comment | string | null | Description of the file format |
+| usage_roles | list(string) | [] | List of roles to grant USAGE privilege |
 
 ### Valid Format Types
 

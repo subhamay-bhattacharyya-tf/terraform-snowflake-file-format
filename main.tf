@@ -53,3 +53,30 @@ resource "snowflake_file_format" "this" {
 
   comment = each.value.comment
 }
+
+
+# -----------------------------------------------------------------------------
+# File Format Grants
+# -----------------------------------------------------------------------------
+locals {
+  file_format_usage_grants = merge([
+    for ff_key, ff in var.file_format_configs : {
+      for role in ff.usage_roles :
+      "${ff_key}_${role}" => {
+        ff_key = ff_key
+        role   = role
+      }
+    }
+  ]...)
+}
+
+resource "snowflake_grant_privileges_to_account_role" "file_format_usage" {
+  for_each = local.file_format_usage_grants
+
+  privileges        = ["USAGE"]
+  account_role_name = each.value.role
+  on_schema_object {
+    object_type = "FILE FORMAT"
+    object_name = snowflake_file_format.this[each.value.ff_key].fully_qualified_name
+  }
+}
