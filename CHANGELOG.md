@@ -1,3 +1,13 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.2.0](https://github.com/subhamay-bhattacharyya-tf/terraform-snowflake-file-format/compare/v1.1.0...v1.2.0) (2026-02-19)
+
+### Features
+
+* add Snowflake file format module with grants support ([3c778ba](https://github.com/subhamay-bhattacharyya-tf/terraform-snowflake-file-format/commit/3c778babdb80b8587fe1d345b719d5fc6f1de97b))
+
 ## [unreleased]
 
 ### 🚀 Features
